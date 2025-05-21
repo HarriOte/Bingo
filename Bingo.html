@@ -7,10 +7,19 @@
     <title>Bingo</title>
   </head>
   <body>
-    <h1>Uskomaton bingo yhteistyöprojekti</h1>
-    <p>Visual studio tallennus1</p>
-      <p>github.com tehty edit</p>
+
+    <h1 style = text-align:center >Uskomaton bingo yhteistyöprojekti</h1>
+    <button id ="automaatio" onclick ="automaatio()">Automaattinen</button>
+    <button id ="manuaalinen" onclick ="manuaalinen()">Manuaalinen</button>
+    <div id = "nappi">
+      <button id = nappi onclick ="arvoyksi()"><p style = "font-size:20px" >Arvo numero</p></button>
+    </div>
+    <div id = näytänumero>
+      <p id="numero">Kierros: 0</p>
+    </div>
     <div id="container" class="container"></div>
+
     <script src="Bingo.js"></script>
   </body>
 </html>
+  
