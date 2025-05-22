@@ -8,16 +8,34 @@
   </head>
   <body>
 
-    <h1 style = text-align:center >Uskomaton bingo yhteistyöprojekti</h1>
-    <button id ="automaatio" onclick ="automaatio()">Automaattinen</button>
-    <button id ="manuaalinen" onclick ="manuaalinen()">Manuaalinen</button>
-    <div id = "nappi">
-      <button id = nappi onclick ="arvoyksi()"><p style = "font-size:20px" >Arvo numero</p></button>
+  <div id = "kahtiajako">
+    <div id = "vasenreuna"></div>
+    <div id = "oikeareuna">
+      <h1 style = text-align:center >Uskomaton bingo yhteistyöprojekti</h1>
+      <button id ="automaatio" onclick ="käynnistäautomaatio()">Automaattinen</button>
+      <button id ="manuaalinen" onclick ="manuaalinen()">Manuaalinen</button>
+      <button id ="manuaalinen" onclick ="uusipeli()">Uusi pelilauta</button>
+      <button id ="manuaalinen" onclick ="käynnistäanimaatio()">animaatio</button>
+      <div id = "nappi">
+        <button id = nappi onclick ="arvoyksi()"><p style = "font-size:20px" >Arvo numero</p></button>
+      </div>
+      <div id = näytänumero>
+        <p id="numero">Kierros: 0</p>
+        <p id="vuoronumero"></p>
+      </div>
+      <div class = "bingoruudut">
+        <div id = "bingokirjaimet">
+          <p class = "isobingoteksti">B</p>
+          <p class = "isobingoteksti">I</p>
+          <p class = "isobingoteksti">N</p>
+          <p class = "isobingoteksti">G</p>
+          <p class = "isobingoteksti">O</p>
+        </div>
+        <div id="container" class="container"></div>
+      </div>
+
     </div>
-    <div id = näytänumero>
-      <p id="numero">Kierros: 0</p>
-    </div>
-    <div id="container" class="container"></div>
+  </div>
 
     <script src="Bingo.js"></script>
   </body>
