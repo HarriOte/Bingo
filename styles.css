@@ -1,25 +1,84 @@
-.body {
-  display:block;
+body {
+  background-color:rgb(177, 196, 212);
+  width: 90vw;
+  height: 90vh;
 }
-#kahtiajako{
-  height: 100vh;
-  width: 100vw;
- 
+
+#säädöt {
+display: flex;
+margin: 3% auto;
+border: solid;
+width: 50vw;
+height: 50px;
+justify-content: center;
+align-items: center;
+text-align: center;
+}
+
+#ajastin {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  border: solid 1px;
+  border-radius: 15%;
   justify-content: center;
+  text-align: center;
+}
+
+#nopeus {
+  width: 220px;
+  height: 10px;
+  justify-content: center;
+  text-align: center;
+}
+
+#sekuntti {
+  width:220px;
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+#kahtiajako {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #oikeareuna{
-  width: 74%;
-   height: 100%
-}
-#vasenreuna{
-
-  width: 25%;
-  height: 100%
+  width: 60%;
+  margin-left: 100px;
 }
 
+#vasenreuna {
+  width: 33vw;
+  height: 75vh;
+  border: solid;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  margin-left: 100px;
+  flex-shrink: 0;
+}
+
+.uusinnumero {
+  font-size: 20px;
+  width: 60px;
+  height: 40px;
+  background-color: rgb(166, 255, 0);
+  color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 4px;
+  margin: 4px;
+  margin-left: 10px;
+}
 
 .bingoruudut {
   display:flex;
@@ -29,10 +88,6 @@
   justify-content: center;
   flex-basis: 5px;
   margin-top: 50px;
-  position: relative;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%); */
 }
 
 .isobingoteksti {
@@ -47,16 +102,13 @@
 #bingokirjaimet {
   display: flex;
   justify-content:  space-around;
-
 }
 
 .container {
   display:flex;
-
   flex-wrap: wrap;
   justify-content: center;
-  flex-basis: 5px;
-   border: solid;
+  flex-basis: 1px;
 }
 
 .gridContainer {
@@ -67,7 +119,7 @@
   width: 500px;
   height: 500px;
   background-color: brown;
-
+   border: solid 3px;
 }
 
 .cell {
@@ -79,14 +131,22 @@
   border: 1px solid #333;
   font-size: 30px;
 }
+
 .cellText {
   text-align: center;
   color: black;
   z-index: 10;
 }
 
-#nappi {
-  display: flex;  
+.nappi {
+  display: flex;
+  font-size: 15px;
+  height: 40px;
+  margin: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(235, 244, 252);
+  border-radius: 8%;
   
 }
 
@@ -108,10 +168,10 @@
   justify-content: center;
   align-items: center;
   height: 50px; 
+  width: 500px;
 }
 
 #vuoronumero {
-
   top: 25%;
   width: 150px;
   background-color: rgb(166, 255, 0);
@@ -122,9 +182,23 @@
 /* voittoilmoitus */
 h5 {
   position: absolute;
-  top: 4%;
+  top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 80px;
   color: green;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: blue;
 }
+
+/* huijausilmoitus */
+h4 {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+  color: rgb(255, 1, 86);
+  background-color: white;
+}
+

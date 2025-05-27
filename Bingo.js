@@ -8,12 +8,29 @@ let uusiNumero;
 
 
 function uusipeli(){
+    running = false;
+  merkitsee = false;
+  pyörii = false;
+
+  const d1 = document.getElementById('voittoteksti');
+    if (d1) {
+      d1.remove();
+    }
+      const d2 = document.getElementById('virheviesti');
+    if (d2) {
+      d2.remove();
+    }
+
   uusiNumero= [];
   klikki = null;
   arpanumerot = [];
+  numero.textContent = "Kierros: 0";
   document.getElementById("vuoronumero").innerText = "";
+  document.getElementById("vasenreuna").innerHTML = "";
+
   UIcontainer.remove();
   gridContainer.remove();
+
   gridArray = [];
   cUI();
   numerojärjestys();
@@ -72,9 +89,6 @@ function cGrid() {
   const columns = [riviB, riviI, riviN, riviG, riviO];
   const letters = ["B", "I", "N", "G", "O"];
 
-
-   
-
   for (let row = 0; row < 5; row++) {
     for (let col = 0; col < 5; col++) {
       const cell = document.createElement("div");
@@ -87,7 +101,6 @@ function cGrid() {
       const cellText = document.createElement("p");
       cellText.classList.add("cellText");
 
-
       const value = columns[col][row];
       cellText.textContent = value;
 
@@ -98,8 +111,6 @@ function cGrid() {
       });
 
       gridContainer.appendChild(cell);
-
-      
     }
   }
 }
@@ -108,18 +119,19 @@ function cGrid() {
 
 //tässä lasketaan tuleeko osuma numeroon.
   let klikki = 0;
-  let merkitsee = true;
+  let merkitsee = false;
 
 function arvoyksi() {
    numero = document.getElementById("numero");
    klikki = klikki + 1;
   numero.textContent = `Kierros: ${klikki}`;
+  
   // Jos arvottu 75 kertaa.
-  if (arpanumerot.length >= 75) {
+  if (arpanumerot.length >= 64  ) {
   running = false;
   pyörii = false;
   
-    alert("Kaikki numerot on jo arvottu!");
+    alert("Ei voittoa tällä kertaa!");
     return;
   }
   // arpoo numeron ja tarkistaa ettei sitä ole jo arvottu.
@@ -131,6 +143,7 @@ function arvoyksi() {
   arpanumerot.push(uusiNumero);
   console.log("Arvottu numero:", uusiNumero);
    document.getElementById("vuoronumero").innerText = kirjain +" "+ uusiNumero;
+   lisäävasemmalle();
 
   // Tarkistaa onko numero osuma ja merkitsee sen
   const cells = document.querySelectorAll(".cell");
@@ -139,6 +152,7 @@ function arvoyksi() {
     const value = parseInt(cell.textContent);
     if (value === uusiNumero) {
       cell.classList.add("osuma"); // Visually mark hit
+      
       Bingo();
     }
   });
@@ -160,16 +174,21 @@ function Bingo() {
         break;
       }
     }
+
     if (rowBingo) {
-      console.log(`BINGO!`);
-      voittoilmoitus();
-      running = false;
-      pyörii = false;
-      return true;
+      if (virhe> 0) {
+        break; // only exits the row-checking loop
+      } else {
+        console.log(`BINGO!`);
+        voittoilmoitus();
+        running = false;
+        pyörii = false;
+        return true;
+      }
     }
   }
 
-  // Tarkistaa pystyrivitu ylhäältä alaspäin.
+  // Tarkistaa pystyrivit ylhäältä alaspäin
   for (let col = 0; col < 5; col++) {
     let colBingo = true;
     for (let row = 1; row <= 5; row++) {
@@ -179,57 +198,51 @@ function Bingo() {
         break;
       }
     }
+
     if (colBingo) {
-      console.log(`BINGO`);
-       voittoilmoitus();
-      running = false;
-      pyörii = false;
-      return true;
+      if (virhe> 0) {
+        break;
+      } else {
+        console.log(`BINGO`);
+        voittoilmoitus();
+        running = false;
+        pyörii = false;
+        return true;
+      }
     }
   }
 
   return false;
 }
+ //jokainen klikki tarkistaa nämä
+document.addEventListener('click', () => {
+  Bingo();
+  tarkistaVirheellisetOsumat();
+    }
+);
 
 function voittoilmoitus() {
     const h1 = document.createElement('h5');
-    h1.textContent = 'OLET WINRAR!';
+    h1.textContent = 'BINGO!';
+    h1.id = 'voittoteksti';
     document.body.prepend(h1);
 }
 
 function manuaalinen() {
   running = false;
   merkitsee = false;
+  pyörii = false;
   console.log("Automation stopped:", running);
 }
 
-document.addEventListener('click', () => {
-  Bingo();
-    // // Check if the current fake cursor is clicking the button
-    // if (currentFakeCursor && activeButton && checkCollision(currentFakeCursor, activeButton)) {
-    //     activeButton.click();
-    //      // Trigger button click
-    //     console.log("Button clicked with the current fake cursor.");
-        
-    // }
-    //     // If no new cursor was added, check if the click was with the wrong cursor
-    //     if (!(currentFakeCursor && activeButton && checkCollision(currentFakeCursor, activeButton))) {
-    //         console.log("Game over: clicked with the wrong cursor.");
-    //         endGame();
-    //     }
-    }
-);
-
-
-function käynnistäautomaatio(){
+function käynnistäautomaatio() {
   running = true;
-  pyörii = false;
+  pyörii = true;
   merkitsee = true;
-  uusipeli();
   automaatio();
 }
 
-let running = true;
+
 function automaatio() {
   if (!running) return;
   arvoyksi();
@@ -238,37 +251,107 @@ function automaatio() {
 
 
 function käynnistäanimaatio(){
+  arvoyksi();
   merkitsee = false;
+  pyörii = true;
   animaatio();
 }
 
+
+function lisäävasemmalle() {
+  const alkuperäinen = document.getElementById("vuoronumero").innerHTML;
+  const animaatioDiv = document.getElementById("vasenreuna");
+
+  const uusidiv = document.createElement("div");
+  uusidiv.classList.add("uusinnumero");
+  uusidiv.innerHTML = alkuperäinen;
+  animaatioDiv.appendChild(uusidiv);
+  }
+
+
 let pyörii = true;
+let intervalID = null;
+
+
 function animaatio() {
-   if (!pyörii) return;
-   arvoyksi();
-   document.getElementById("vuoronumero").innerText = uusiNumero;
-   setTimeout(animaatio, 1000);
+  const nopeus = document.getElementById("nopeus");
+
+  // tyhjentää aikaisemman ajan
+  if (intervalID) {
+    clearInterval(intervalID);
+  }
+
+  // Ottaa slider.value ajan ja ajastin alkaa siitä (uudelleen)
+  intervalID = setInterval(() => {
+    if (!pyörii) {
+      clearInterval(intervalID);
+      return;
+    }
+    arvoyksi();
+  }, parseInt(nopeus.value));
 }
 
-function kirjaimenlisäys() {
- 
-  
-  console.log("kirjaimenlisäys " + uusiNumero);
+// päivättää tekstin slider.valuesta
+sekuntti.textContent = 'Arvonnan nopeus ' + (nopeus.value / 1000) + ' sekunttia';
+document.getElementById("nopeus").addEventListener('input', () => {
+sekuntti.textContent = 'Arvonnan nopeus ' + (nopeus.value / 1000) + ' sekunttia';
+  if (pyörii) {
+    animaatio();
+  }
+});
 
+
+//lisää aakkosen numeron eteen
+function kirjaimenlisäys() {
   if (uusiNumero < 16) {
     kirjain = "B";
-    console.log("B");
   } else if (uusiNumero < 31) {
     kirjain = "I";
-    console.log("I");
   } else if (uusiNumero < 46) {
     kirjain = "N";
-    console.log("N");
   } else if (uusiNumero < 61) {
     kirjain = "G";
-    console.log("G");
   } else {
     kirjain = "O";
-    console.log("O");
   }
+}
+
+virhe = 0;
+function tarkistaVirheellisetOsumat() {
+  const osumaCells = document.querySelectorAll('.cell.osuma');
+  const vasenreunaDivs = document.querySelectorAll('#vasenreuna .uusinnumero');
+
+  const vasenreunaNumerot = Array.from(vasenreunaDivs).map(div => {
+    const parts = div.textContent.trim().split(' ');
+    return parseInt(parts[1]);
+  });
+
+  let virheelliset = [];
+  osumaCells.forEach(cell => {
+    const cellValue = parseInt(cell.textContent);
+    if (!vasenreunaNumerot.includes(cellValue)) {
+      virheelliset.push(cellValue);
+    }
+  });
+
+  if (virheelliset.length > 0) {
+   
+  virhe = 1;
+  console.warn("Virheelliset osumat (ei löydy vasenreunasta):", virheelliset);
+  let h1 = document.getElementById('virheviesti');
+
+  if (!h1) {
+    //luo ainoastaan jos on olemassa
+    h1 = document.createElement('h4');
+    h1.id = 'virheviesti';
+    document.body.prepend(h1);
+  }
+
+  // teksti joka ilmestyy jos klikkaa väärin
+  h1.textContent = `Koitatko huijata ${virheelliset.join(", ")} ei olla vielä arvottu!`;
+    } else {
+      console.log("ei virheitä");
+    }
+
+    return virheelliset;
 }
