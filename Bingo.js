@@ -2,15 +2,21 @@ const container = document.getElementById("container");
 let arpanumerot = [];
 let UIcontainer;
 let gridContainer;
-let gridArray = [];
+
 let riviB, riviI, riviN, riviG, riviO;
 let uusiNumero;
 
+  running = "";
 
+
+
+
+//tyhjentää kaiken aikaisemman pelatun
 function uusipeli(){
-    running = false;
+  running = false;
   merkitsee = false;
   pyörii = false;
+  rajoitus = true;
 
   const d1 = document.getElementById('voittoteksti');
     if (d1) {
@@ -31,10 +37,11 @@ function uusipeli(){
   UIcontainer.remove();
   gridContainer.remove();
 
-  gridArray = [];
+ 
   cUI();
   numerojärjestys();
   cGrid();
+  napinväri();
 }
 
 function init() {
@@ -117,10 +124,16 @@ function cGrid() {
 
 
 
-//tässä lasketaan tuleeko osuma numeroon.
+//klikki on kierrosnumero.
   let klikki = 0;
+//merkitsee merkkaa automaattisesti jos tulee osuma
   let merkitsee = false;
+//pyörii käynnistää pelin (animaatio)
+  let pyörii = false;
+// rajoittaa automaatiota käynnistymästä useita kertoja
+  let rajoitus = false;
 
+//tässä lasketaan tuleeko osuma numeroon.
 function arvoyksi() {
    numero = document.getElementById("numero");
    klikki = klikki + 1;
@@ -221,6 +234,7 @@ document.addEventListener('click', () => {
     }
 );
 
+// Teksti joka ilmestyy jos oikeasti bingo (käytetään Bingo funktiossa)
 function voittoilmoitus() {
     const h1 = document.createElement('h5');
     h1.textContent = 'BINGO!';
@@ -228,33 +242,43 @@ function voittoilmoitus() {
     document.body.prepend(h1);
 }
 
-function manuaalinen() {
+//pysäyttää kaiken paikoilleen
+function STOP() {
+   rajoitus = false;
   running = false;
   merkitsee = false;
   pyörii = false;
   console.log("Automation stopped:", running);
+   napinväri();
 }
+
 
 function käynnistäautomaatio() {
   running = true;
   pyörii = true;
   merkitsee = true;
+
   automaatio();
-}
+  napinväri();
+  }
 
 
+  rajoitus = false;
 function automaatio() {
   if (!running) return;
   arvoyksi();
   setTimeout(automaatio, 100);
+
 }
 
 
 function käynnistäanimaatio(){
-  arvoyksi();
-  merkitsee = false;
   pyörii = true;
+  merkitsee = false;
+  arvoyksi();
+ 
   animaatio();
+  napinväri();
 }
 
 
@@ -269,12 +293,13 @@ function lisäävasemmalle() {
   }
 
 
-let pyörii = true;
+
+
+
 let intervalID = null;
-
-
 function animaatio() {
   const nopeus = document.getElementById("nopeus");
+  
 
   // tyhjentää aikaisemman ajan
   if (intervalID) {
@@ -348,10 +373,33 @@ function tarkistaVirheellisetOsumat() {
   }
 
   // teksti joka ilmestyy jos klikkaa väärin
-  h1.textContent = `Koitatko huijata ${virheelliset.join(", ")} ei olla vielä arvottu!`;
+  h1.textContent = `Koitatko huijata? ${virheelliset.join(", ")} ei olla vielä arvottu!`;
     } else {
       console.log("ei virheitä");
     }
 
     return virheelliset;
 }
+  pyörii = "";
+//vaihtaa nappien värit kun peli käynnissä (pyörii)
+function napinväri() {
+  const aloita = document.getElementById("nappi1");
+  const automaatio = document.getElementById("nappi3");
+
+  //täysin automatisoitu
+    if (running) {     
+    automaatio.style.backgroundColor = "rgb(137, 145, 153)";
+  }
+  //perus pelinopeudella
+  if (pyörii) {
+    aloita.style.backgroundColor = "rgb(137, 145, 153)";
+    console.log("pyörii");
+  } else {
+    automaatio.style.backgroundColor = "";
+    aloita.style.backgroundColor = "";
+  }
+}
+
+
+  
+

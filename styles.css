@@ -6,13 +6,27 @@ body {
 
 #säädöt {
 display: flex;
-margin: 3% auto;
-border: solid;
+margin: 10px auto;
 width: 50vw;
 height: 50px;
 justify-content: center;
 align-items: center;
 text-align: center;
+}
+
+#nappi1, #nappi2, #nappi3, #nappi4, #nappi5 {
+  display: flex;
+  font-size: 15px;
+  height: 40px;
+  margin: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(235, 244, 252);
+  border-radius: 8%;
+}
+
+#nappi1 {
+  background-color: ;
 }
 
 #ajastin {
@@ -42,19 +56,32 @@ text-align: center;
 #kahtiajako {
   height: 90%;
   width: 90%;
-  display: flex;
+  display: flex; 
+  flex-direction: row; 
   justify-content: center;
   margin-left: auto;
   margin-right: auto;
+  flex-shrink: 0;
+
 }
 
 #oikeareuna{
-  width: 60%;
   margin-left: 100px;
+
+  display: flex;
+  flex-direction: column;
+ 
+  align-content: flex-start;
+  margin-left: 100px;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  
+
 }
 
 #vasenreuna {
-  width: 33vw;
+  width: 20vw;
   height: 75vh;
   border: solid;
   display: flex;
@@ -63,6 +90,7 @@ text-align: center;
   align-content: flex-start;
   margin-left: 100px;
   flex-shrink: 0;
+
 }
 
 .uusinnumero {
@@ -88,6 +116,11 @@ text-align: center;
   justify-content: center;
   flex-basis: 5px;
   margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  
+
+  flex-shrink: 0;
 }
 
 .isobingoteksti {
@@ -138,17 +171,7 @@ text-align: center;
   z-index: 10;
 }
 
-.nappi {
-  display: flex;
-  font-size: 15px;
-  height: 40px;
-  margin: 5px;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(235, 244, 252);
-  border-radius: 8%;
-  
-}
+
 
 .osuma {
   background-color: yellow;
@@ -185,10 +208,10 @@ h5 {
   top: 10%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 80px;
-  color: green;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: blue;
+  font-size: 150px;
+  color: rgb(4, 151, 4);
+  -webkit-text-stroke-width: 4px;
+  -webkit-text-stroke-color: rgb(173, 248, 112);
 }
 
 /* huijausilmoitus */
