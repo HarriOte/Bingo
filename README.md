@@ -1,4 +1,4 @@
-Tämä Bingo yksinpeli on tehty yhteistyössä työkaveri Jaakon kanssa.
+Tämä Bingo yksinpeli on tehty yhteistyössä työkaveri Jaakko Vallinkoski kanssa.
 
 ASENNUSOHJEET:
 
