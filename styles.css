@@ -25,9 +25,6 @@ text-align: center;
   border-radius: 8%;
 }
 
-#nappi1 {
-  background-color: ;
-}
 
 #ajastin {
   display: flex;
@@ -62,22 +59,16 @@ text-align: center;
   margin-left: auto;
   margin-right: auto;
   flex-shrink: 0;
-
 }
 
 #oikeareuna{
   margin-left: 100px;
-
   display: flex;
   flex-direction: column;
- 
   align-content: flex-start;
-  margin-left: 100px;
   flex-shrink: 0;
   justify-content: center;
   align-items: center;
-  
-
 }
 
 #vasenreuna {
@@ -90,7 +81,6 @@ text-align: center;
   align-content: flex-start;
   margin-left: 100px;
   flex-shrink: 0;
-
 }
 
 .uusinnumero {
@@ -111,15 +101,12 @@ text-align: center;
 .bingoruudut {
   display:flex;
   flex-direction: column;
+  flex-wrap: wrap;
   width: 500px;
   height: 600px;
   justify-content: center;
   flex-basis: 5px;
   margin-top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  
-
   flex-shrink: 0;
 }
 
@@ -170,8 +157,6 @@ text-align: center;
   color: black;
   z-index: 10;
 }
-
-
 
 .osuma {
   background-color: yellow;

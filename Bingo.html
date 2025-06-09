@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Bingo</title>
-  </head>
-  <body>
-
-<h1 style = text-align:center >Uskomaton bingo yhteistyöprojekti</h1>
-  <div id = "säädöt">
-    <div id = "ajastin">
-        <input type="range" min="1000" max="10000" value="5000" class="slider" id="nopeus">
-        <p id = "sekuntti"></p>
-    </div>
-    <button id ="nappi1" onclick ="käynnistäanimaatio()">Aloita</button>
-    <button id ="nappi2" onclick ="arvoyksi()">Arvo 1 numero</button>
-    <button id ="nappi3" onclick ="käynnistäautomaatio()">Täysin automatisoitu</button>
-    <button id ="nappi4" onclick ="STOP()">STOP</button>
-    <button id ="nappi5" onclick ="uusipeli()">Uusi peli</button>
-  </div>
-
-  <div id = "kahtiajako">
-    <div id = "vasenreuna"></div>
-    <div id = "oikeareuna">
-      <div id = näytänumero>
-        <p id="numero">Kierros: 0</p>
-        <p id="vuoronumero"></p>
-      </div>
-      <div class = "bingoruudut">
-        <div id = "bingokirjaimet">
-          <p class = "isobingoteksti">B</p>
-          <p class = "isobingoteksti">I</p>
-          <p class = "isobingoteksti">N</p>
-          <p class = "isobingoteksti">G</p>
-          <p class = "isobingoteksti">O</p>
-        </div>
-        <div id="container" class="container"></div>
-      </div>
-    </div>
-  </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Bingo</title>
+</head>
+<body>
   
+  <h1 style = text-align:center >Uskomaton bingo yhteistyöprojekti</h1>
+    <div id = "säädöt">
+      <div id = "ajastin">
+          <input type="range" min="1000" max="10000" value="5000" class="slider" id="nopeus">
+          <p id = "sekuntti"></p>
+      </div>
+       <button onclick ="DEBUG()">DEBUG</button>
+      <button id ="nappi1" onclick ="käynnistäanimaatio()">Aloita</button>
+      <button id ="nappi2" onclick ="arvoyksi()">Arvo 1 numero</button>
+      <button id ="nappi3" onclick ="käynnistäautomaatio()">Täysin automatisoitu</button>
+      <button id ="nappi4" onclick ="STOP()">STOP</button>
+      <button id ="nappi5" onclick ="uusipeli()">Uusi peli</button>
+    </div>
 
-    <script src="Bingo.js"></script>
+    <div id = "kahtiajako">
+      <div id = "vasenreuna"></div>
+      <div id = "oikeareuna">
+        <div id = näytänumero>
+          <p id="numero">Kierros: 0</p>
+          <p id="vuoronumero"></p>
+        </div>
+        <div class = "bingoruudut">
+          <div id = "bingokirjaimet">
+            <p class = "isobingoteksti">B</p>
+            <p class = "isobingoteksti">I</p>
+            <p class = "isobingoteksti">N</p>
+            <p class = "isobingoteksti">G</p>
+            <p class = "isobingoteksti">O</p>
+          </div>
+          <div id="container" class="container"></div>
+        </div>
+      </div>
+    </div>
+
+  <script src="Bingo.js"></script>
   </body>
 </html>
   
